@@ -1,6 +1,7 @@
-var PLAY = 1;
-var END = 0;
-var gameState = PLAY;
+var START=1;
+var PLAY=2;
+var END=0;
+var gameState=START;
 
 var trex, trex_running, trex_collided;
 var ground, invisibleGround, groundImage;
@@ -84,13 +85,51 @@ function setup() {
 
 function draw() {
   //trex.debug = true;
-  background(backgroundImg);
+  
+  
+   if(gameState===START)
+  {
+   
+   gameOver.visible=false;
+   restart.visible=false;
+    
+   //Instructions for playing this game/USER GUIDE
+   background("azure");
+   fill("red");
+   textSize(20);
+   text("Read all the instructions carefully before playing:-",50,80);
+   fill("red");
+   textSize(18);
+   text("1.Press Space Key to Start the Game",50,110);
+   fill("black");
+   text("2.Press UP Arrow Key for long jump",50,135);
+   text("3.Press Space Key to Jump",50,160);
+   text("4.Try to collect max oranges to get more survival time",50,190);
+   text("5.Don't Let Survival Time 0 otherwise game will end",50,220);
+   text("6.Collect bananas to score and get survival time",50,250);
+   text("7.Avoid the obstacles otherwise you will lose 1 chance from 3",50,280);
+   text("8.Try to Score high, With more score game will get more difficult",50,310);
+   text("9.Avoid Long Jump unnecessary as it decrease survival time",50,340);
+    
+   textSize(30);
+   text("ALL THE BEST!!",200,385);
+   
+   //To make monkey & ground invisible during start state
+   monkey.visible=false;
+   ground.visible=false;
+
+   //Condition for entering in PLAY state
+   if(keyDown("space"))
+   {
+     gameState=PLAY;
+   }
+   
+  }
+  if (gameState===PLAY){
+    background(backgroundImg);
   textSize(20);
   fill("black")
   text("Score: "+ score,30,50);
-  
-  
-  if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
     
@@ -116,6 +155,10 @@ function draw() {
     }
   }
   else if (gameState === END) {
+    background(backgroundImg);
+  textSize(20);
+  fill("black")
+  text("Score: "+ score,30,50);
     gameOver.visible = true;
     restart.visible = true;
     
