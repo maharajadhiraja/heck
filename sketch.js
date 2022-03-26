@@ -234,7 +234,7 @@ function spawnObstacles() {
 }
 
 function reset(){
-  gameState = PLAY;
+  gameState = START;
   gameOver.visible = false;
   restart.visible = false;
   
