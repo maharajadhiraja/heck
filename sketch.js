@@ -116,11 +116,11 @@ function draw() {
    text("ALL THE BEST!!",200,385);
    
    //To make monkey & ground invisible during start state
-   monkey.visible=false;
+   trex.visible=false;
    ground.visible=false;
 
    //Condition for entering in PLAY state
-   if(keyDown("enter"))
+   if(keyDown("space"))
    {
      gameState=PLAY;
    }
