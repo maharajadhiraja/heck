@@ -10,6 +10,8 @@ var cloudsGroup, cloudImage;
 var obstaclesGroup, obstacle1, obstacle2, obstacle3, obstacle4;
 var backgroundImg
 var score=0;
+var foodstuff=0;
+var Donation=0;
 var jumpSound, collidedSound;
 
 var gameOver, restart;
@@ -100,12 +102,11 @@ function draw() {
    text("Read all the instructions carefully before playing:-",50,80);
    fill("red");
    textSize(18);
-   text("1.Press Space Key to Start the Game",50,110);
+   text("1.Press Enter Key to Start the Game",50,110);
    fill("black");
-   text("2.Press UP Arrow Key for long jump",50,135);
-   text("3.Press Space Key to Jump",50,160);
-   text("4.Try to collect max oranges to get more survival time",50,190);
-   text("5.Don't Let Survival Time 0 otherwise game will end",50,220);
+   text("2.Press Space Key for jump",50,135);
+   text("4.Try to collect max food stuff for more most time",50,190);
+   text("5.Stay away from theives to save Foodstuff",50,220);
    text("6.Collect bananas to score and get survival time",50,250);
    text("7.Avoid the obstacles otherwise you will lose 1 chance from 3",50,280);
    text("8.Try to Score high, With more score game will get more difficult",50,310);
@@ -119,7 +120,7 @@ function draw() {
    ground.visible=false;
 
    //Condition for entering in PLAY state
-   if(keyDown("space"))
+   if(keyDown("enter"))
    {
      gameState=PLAY;
    }
@@ -130,6 +131,11 @@ function draw() {
   textSize(20);
   fill("black")
   text("Score: "+ score,30,50);
+    //To make monkey & ground visible during PLAY state
+    trex.visible=false;
+    ground.visible=false;
+    ground.visible=true;
+    trex.visible=true;
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
     
